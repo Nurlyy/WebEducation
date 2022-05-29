@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+<!-- banner -->
+{% block content %}
+<div class="banner1">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" href="{% url 'home' %}"><span>W</span>ebBagdarlamalau</a></h1>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <nav class="link-effect-2" id="link-effect-2">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}"><span data-hover="{% trans 'Басты' %}">{% trans "Басты" %}</span></a></li>
+                    <li><a href="{% url 'courses' %}"><span data-hover="{% trans 'Курстар' %}">{% trans "Курстар" %}</span></a></li>
+                    <li class="active"><a href="{% url 'contact' %}"><span data-hover="{% trans 'Хабарласу' %}">{% trans "Хабарласу" %}</span></a></li>
+                    <li class="dropdown">
+                        {% get_current_language_bidi as LANGUAGE_CODE %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{redirect_to}}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}" {%if language.code == LANGUAGE_CODE%}selected{%endif%}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <div class="wthree_banner1_info">
+        <div class="container">
+            <h3><span>{% trans 'Хабар'%}</span>{% trans 'ласу'%}</h3>
+        </div>
+    </div>
+</div>
+<!-- //banner -->	
+<!-- mail -->
+<div class="courses">
+    <div class="container">
+        <div class="w3_agile_team_grid">
+            <div class="text-center">
+                <h3>{% trans 'Бізбен'%} <span>{% trans 'хабарда'%}</span>{% trans ' бол'%}</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="agileits_w3layouts_team_grids agileits_mail_grids">
+            <div class="agileinfo_mail_grid_right">
+                <div class="agileinfo_mail_social_right">
+
+                    <div class="agileinfo_mail_social_rightl">
+                        <a href="#" class="w3_contact_facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <p>Facebook</p>
+                        </a>
+                    </div>
+                    <div class="agileinfo_mail_social_rightr">
+                        <a href="#" class="w3_contact_instagram">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            <p>WhatsApp</p>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileinfo_mail_social_right">
+                    <div class="agileinfo_mail_social_right_social">
+                        <a href="#" class="w3_contact_rss">
+                            <i class="fa fa-instagram"></i>
+                            <p>Instagram</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="agileinfo_mail_social_right">
+                    <div class="agileinfo_mail_social_right_social">
+                        <a href="#" class="w3_contact_google">
+                            <i class="fa fa-envelope"></i>
+                            <p>E-Mail</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

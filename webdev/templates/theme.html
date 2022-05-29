@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="banner1">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" href="{% url 'home' %}"><span>W</span>ebBagdarlamalau</a></h1>
+        </div>
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <nav class="link-effect-2" id="link-effect-2">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}"><span data-hover="{% trans 'Басты' %}">{% trans "Басты" %}</span></a></li>
+                    <li class="active"><a href="{% url 'courses' %}"><span data-hover="{% trans 'Курстар' %}">{% trans "Курстар" %}</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span data-hover="{% trans 'Хабарласу' %}">{% trans "Хабарласу" %}</span></a></li>
+                    <li class="dropdown">
+                        {% get_current_language_bidi as LANGUAGE_CODE %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{redirect_to}}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}" {%if language.code == LANGUAGE_CODE%}selected{%endif%}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <div class="wthree_banner1_info">
+        <div class="container">
+            <h3>{% trans 'Курс:'%}   {{course.title|slice:'1'}}<span>{{course.title|slice:"1:"}}</span></h3>
+        </div>
+    </div>
+</div>
+<!-- //banner -->	
+<!-- courses -->
+<div class="courses">
+    <div class="container"> 	
+
+        <div class="container"> 
+			<div class="w3_agile_team_grid">
+                    <div class="text-center">
+                        <h2>{{theme.first_title}}</h2>
+                        <br>
+                        <h4 style="color: #6f6f6f;">{{theme.first_text}}</h4>
+
+                        
+
+                        {% if theme.second_title and theme.second_text %}
+                            <br><br><br>
+                            <h2>{{theme.second_title|capfirst}}</h2>
+                            <br>
+                            <h4 style="color: #6f6f6f;">{{theme.second_text}}</h4>
+                        {% endif %}
+
+                        
+
+                        {% if theme.third_title and theme.third_title %}
+                            <br><br><br>
+                            <h2>{{theme.third_title|capfirst}}</h2>
+                            <br>
+                            <h4 style="color: #6f6f6f;">{{theme.third_text}}</h4>
+                        {% endif %}
+
+                        {% if quiz %}
+                        {% for q in quiz %}
+                            <br><br><br>
+                            <button class="btn btn-outline-info">
+                                <a href="{% url 'quiz' slugCourse=course.slug slugTheme=theme.slug slugQuiz=q.slug %}" style="text-decoration:None" class="footer_link">Тест: {{q.title}}   <i class="fa fa-list-alt "></i></a>
+                            </button>
+                        {% endfor %}
+                        {% endif %}
+
+                        
+                        {% if theme.file_field %}
+                            <br><br><br>
+                            <button class="btn btn-outline-info">
+                                <a href="{{theme.file_field.url}}" download="{{theme.file_field.url}}" style="text-decoration:None" class="footer_link">{% trans 'Қосымша файлды жүктеу'%}  <i class="fa fa-download"></i></a>
+                            </button>
+                        {% endif %}
+
+                        {% if theme.video_url %}
+                            <br><br><br>
+                            <button class="btn btn-outline-info">
+                                <a href="{{theme.video_url}}" style="text-decoration:None" class="footer_link">{% trans 'Қосымша видео көру   ' %}  <i class="fa fa-youtube"></i></a>
+                            </button>
+                        {% endif %}
+                        
+                    </div>
+                <div class="clearfix"> </div>
+            </div>
+				
+		</div>
+        
+        <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //courses -->
+
+<!-- stats-bottom -->
+
+<!-- //stats-bottom -->	
+<script src="{%static 'js/bars.js' %}"></script>
+
+{% endblock content %}

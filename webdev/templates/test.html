@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% load mathfilters %}
+
+{% block content %}
+
+<div class="banner1">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" href="{% url 'home' %}"><span>W</span>ebBagdarlamalau</a></h1>
+        </div>
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <nav class="link-effect-2" id="link-effect-2">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}"><span data-hover="{% trans 'Басты' %}">{% trans "Басты" %}</span></a></li>
+                    <li class="active"><a href="{% url 'courses' %}"><span data-hover="{% trans 'Курстар' %}">{% trans "Курстар" %}</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span data-hover="{% trans 'Хабарласу' %}">{% trans "Хабарласу" %}</span></a></li>
+                    <li class="dropdown">
+                        {% get_current_language_bidi as LANGUAGE_CODE %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{redirect_to}}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}" {%if language.code == LANGUAGE_CODE%}selected{%endif%}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <div class="wthree_banner1_info">
+        <div class="container">
+            <h3>{% trans 'Курс:'%}   {{course.title|slice:'1'}}<span>{{course.title|slice:"1:"}}</span></h3>
+        </div>
+    </div>
+</div>
+<!-- //banner -->	
+<!-- courses -->
+<div class="courses">
+    <div class="container"> 	
+
+        <div class="container"> 
+			<div class="w3_agile_team_grid">
+                    <div class="text-center">
+
+                            <h2>Тест: {{parent.title|capfirst}}</h2>
+                            <br>
+                            <br>
+                            <br>
+                        
+                        <script>
+                            function submitAnswers(answers, ids){
+                                var total = answers.length;
+                                var score = 0;
+                                var choice = [];
+                            
+                                for(var i = 1; i <= total; i++){
+                                    
+                                    choice[i] = document.forms["quizForm"]["q"+ids[i-1]].value;
+
+                                }
+                             
+                                for(i = 1; i <= total; i++){
+                                    if(choice[i] == null || choice[i] == ''){
+                                        alert('Вы не ответили на вопрос ' + i);
+                                        return false;
+                                    }
+                                }
+                                for(i = 1; i <= total; i++){
+                                    if(choice[i] == answers[i - 1]){
+                                        score++;
+                                    }
+                                }
+                                
+                                alert("Правильные ответы " + score + " из " + total);
+                                //Display Result
+                                var results = document.getElementById('results');
+                                results.innerHTML = "<br><h3>Правильные ответы <span>" + score + "</span> из <span>" + total + "</span></h3><br>";
+                                
+                            
+                                return false;
+                            }
+                        </script>
+                        <form name = "quizForm" onsubmit = "return submitAnswers(answers = [{% for q in questions %}'{{ q.answer }}',{% endfor %}], ids=[{% for i in questions %}'{{i.id}}',{% endfor %}])">
+                        {% for q in questions %}
+
+                        <h4>{{ q.question }}</h4>
+                        <br>
+                        <input type = "radio" name = "q{{ q.id }}" value = "Option1" id = "q1a">   a. {{ q.option1 }}<br><br>
+                        <input type = "radio" name = "q{{ q.id }}" value = "Option2" id = "q1b">   b. {{ q.option2 }}<br><br>       
+                        <input type = "radio" name = "q{{ q.id }}" value = "Option3" id = "q1c">   c. {{ q.option3 }}<br><br>
+                        <input type = "radio" name = "q{{ q.id }}" value = "Option4" id = "q1d">   d. {{ q.option4 }}<br><br><br><br>
+
+                        {% endfor %}
+
+                        <br><br><br>
+                        <div id = "results"></div>
+                        <button class="btn btn-outline-info">
+                            <a type="submit" style="text-decoration:None" class="footer_link">{% trans 'Тестті аяқтау'%}  <i class="fa fa-check"></i></a>
+                        </button>
+                        </form>
+                        <br><br>
+
+                    </div>
+                <div class="clearfix"> </div>
+            </div>
+				
+		</div>
+        
+        <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //courses -->
+
+<!-- stats-bottom -->
+
+<!-- //stats-bottom -->	
+<script src="{%static 'js/bars.js' %}"></script>
+
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+<div class="banner1">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" href="{% url 'home' %}"><span>W</span>ebBagdarlamalau</a></h1>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <nav class="link-effect-2" id="link-effect-2">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}"><span data-hover="{% trans 'Басты' %}">{% trans "Басты" %}</span></a></li>
+                    <li class="active"><a href="{% url 'courses' %}"><span data-hover="{% trans 'Курстар' %}">{% trans "Курстар" %}</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span data-hover="{% trans 'Хабарласу' %}">{% trans "Хабарласу" %}</span></a></li>
+                    <li class="dropdown">
+                        {% get_current_language_bidi as LANGUAGE_CODE %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{redirect_to}}">
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}" {%if language.code == LANGUAGE_CODE%}selected{%endif%}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</div>
+<!-- //banner -->	
+<!-- courses -->
+<div class="courses">
+    <div class="container"> 	
+        <div class="w3_agile_team_grid">
+            <div class="text-center">
+                <h3>{% trans 'Барлық '%}<span>{% trans 'курстар'%}</span></h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+        
+        
+        <div class="agileinfo_services_grids">
+            {% for course in courses %}
+            <div class="col-md-4 w3_agile_services_grid" >
+                <div class="agile_services_grid1 wthree_services_grid1Course" style="  border-width: 5px 5px 5px 5px;
+                border-style: solid;
+                border-color: #0accff;
+                border-radius: 27px">
+                </div>
+                <div class="agileits_w3layouts_services_grid1 text-center">
+                    <h4><a href="{% url 'themes_of_course' course.slug %}">{{course.title}}</a></h4>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //courses -->
+
+<!-- stats-bottom -->
+
+<!-- //stats-bottom -->	
+<script src="{%static 'js/bars.js' %}"></script>
+
+{% endblock content %}

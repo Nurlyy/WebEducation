@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-29 16:51+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: .\templates\base.html:58 .\templates\contact.html:21
+#: .\templates\courses.html:20 .\templates\home.html:20
+#: .\templates\test.html:21 .\templates\theme.html:23
+#: .\templates\themes_of_course.html:24
+msgid "Басты"
+msgstr "Басты"
+
+#: .\templates\base.html:59 .\templates\contact.html:22
+#: .\templates\courses.html:21 .\templates\home.html:21
+#: .\templates\test.html:22 .\templates\theme.html:24
+#: .\templates\themes_of_course.html:25
+msgid "Курстар"
+msgstr "Курстар"
+
+#: .\templates\base.html:60 .\templates\contact.html:23
+#: .\templates\courses.html:22 .\templates\home.html:22
+#: .\templates\test.html:23 .\templates\theme.html:25
+#: .\templates\themes_of_course.html:26
+msgid "Хабарласу"
+msgstr "Хабарласу"
+
+#: .\templates\contact.html:46
+msgid "Хабар"
+msgstr "Хабар"
+
+#: .\templates\contact.html:46
+msgid "ласу"
+msgstr "ласу"
+
+#: .\templates\contact.html:56
+msgid "Бізбен"
+msgstr "Бізбен"
+
+#: .\templates\contact.html:56
+msgid "хабарда"
+msgstr "хабарда"
+
+#: .\templates\contact.html:56
+msgid " бол"
+msgstr " бол"
+
+#: .\templates\courses.html:50
+msgid "Барлық "
+msgstr "Барлық "
+
+#: .\templates\courses.html:50
+msgid "курстар"
+msgstr "курстар"
+
+#: .\templates\home.html:14
+msgid "W"
+msgstr "W"
+
+#: .\templates\home.html:14
+msgid "ebBagdarlamalau"
+msgstr "ebBagdarlamalau"
+
+#: .\templates\home.html:46
+msgid "Білім алсаң -"
+msgstr "Білім алсаң -"
+
+#: .\templates\home.html:46
+msgid "WebBagdarlamalau"
+msgstr "WebBagdarlamalau"
+
+#: .\templates\home.html:48
+msgid "Білімі"
+msgstr "Білімі"
+
+#: .\templates\home.html:48
+msgid "терең"
+msgstr "терең"
+
+#: .\templates\home.html:48
+msgid " адам жеңілмейді"
+msgstr " адам жеңілмейді"
+
+#: .\templates\home.html:49
+msgid "Оқу – "
+msgstr "Оқу – "
+
+#: .\templates\home.html:49
+msgid "ой азығы"
+msgstr "ой азығы"
+
+#: .\templates\home.html:50
+msgid "Білімнен"
+msgstr "Білімнен"
+
+#: .\templates\home.html:50
+msgid " қуатты күш жоқ"
+msgstr " қуатты күш жоқ"
+
+#: .\templates\home.html:71
+msgid "Веб"
+msgstr "Веб"
+
+#: .\templates\home.html:71
+msgid "технологиялар"
+msgstr ""
+
+#: .\templates\home.html:72
+msgid ""
+"Қазіргі заманда web-технология - дүниежүзі компьютерлерінің басын қосты. Web-"
+"технология көмегімен адамдар бір-бірімен электрондық пошта, электронды "
+"хабарландыру, бейне-телеконференциялар, онлайн-курстар, чат, блоктар және т."
+"б. сұқбаттаса алады."
+msgstr ""
+"Қазіргі заманда web-технология - дүниежүзі компьютерлерінің басын қосты. Web-"
+"технология көмегімен адамдар бір-бірімен электрондық пошта, электронды "
+"хабарландыру, бейне-телеконференциялар, онлайн-курстар, чат, блоктар және т."
+"б. сұқбаттаса алады."
+
+#: .\templates\home.html:108
+msgid "Білім — "
+msgstr "Білім — "
+
+#: .\templates\home.html:108
+msgid "  адам баласының ортақ қазынасы."
+msgstr "  адам баласының ортақ қазынасы."
+
+#: .\templates\test.html:46 .\templates\theme.html:48
+#: .\templates\themes_of_course.html:60
+msgid "Курс:"
+msgstr "Курс:"
+
+#: .\templates\test.html:89
+msgid "Тестті аяқтау"
+msgstr "Тестті аяқтау"
+
+#: .\templates\theme.html:95
+msgid "Қосымша файлды жүктеу"
+msgstr "Қосымша файлды жүктеу"
+
+#: .\templates\theme.html:102
+msgid "Қосымша видео көру   "
+msgstr "Қосымша видео көру   "
+
+#: .\templates\themes_of_course.html:49
+msgid "T"
+msgstr "T"
+
+#: .\templates\themes_of_course.html:49
+msgid "ақырыптар"
+msgstr "ақырыптар"
